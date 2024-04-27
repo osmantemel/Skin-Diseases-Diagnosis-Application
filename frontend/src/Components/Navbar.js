@@ -1,6 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
 
 const Navbar = () => {
+  const navigate=useNavigate();
+
+  const handleContact=()=>{
+    navigate('/contact');
+  }
+  const handleAbout=()=>{
+    navigate('/about');
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
@@ -21,12 +32,12 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/about">
+              <a className="nav-link" href="/about" onClick={handleAbout}>
                 About
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/contact">
+              <a className="nav-link" href="/contact" onClick={handleContact}>
                 Contact
               </a>
             </li>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import '../css/Fotoload.css';
+import { useNavigate } from 'react-router-dom'; 
 
 const FotoLoad = () => {
   const [file, setFile] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const navigate = useNavigate(); // useNavigate hook'u bileşenin içinde kullanıldı
 
   const handleDragEnter = (event) => {
     event.preventDefault();
@@ -34,9 +36,9 @@ const FotoLoad = () => {
       const reader = new FileReader();
       reader.onload = () => {
         const base64Image = reader.result;
-        console.log(base64Image); // Base64 kodunu konsola yazdır
-        // Base64 kodunu ASP.NET Web API'ye gönder
+        console.log(base64Image); 
         sendBase64ToApi(base64Image);
+        navigate('/pie-chart'); // Programatik olarak PieChart rotasına gitme
       };
       reader.readAsDataURL(file);
     }
@@ -58,7 +60,7 @@ const FotoLoad = () => {
 
       if (cevap.ok) {
         console.log('Resim başarıyla gönderildi!');
-        alert("Reşim işleniyor Lütfen Bekleyin ...")
+        alert("Resim işleniyor Lütfen Bekleyin ...")
       } else {
         console.error('Resim gönderme işleminde bir hata oluştu.');
       }
@@ -102,4 +104,3 @@ const FotoLoad = () => {
 };
 
 export default FotoLoad;
-
