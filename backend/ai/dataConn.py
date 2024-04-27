@@ -2,24 +2,78 @@ import sqlite3
 import base64
 from PIL import Image
 from io import BytesIO
+import time
+import numpy as np
+from tensorflow.keras.models import load_model
 
+MODEL_PATH = "C:/Users/Osman/Desktop/DOCUMENTS/teknofest/model/cnn_model.h5"
+IMAGE_PATH = "C:/Users/Osman/Desktop/DOCUMENTS/teknofest/Skin-Diseases-Diagnosis-Application/resim.png"
+
+CLASS_LABELS = {
+    0: "Acne and Rosacea Photos",
+    1: "Actinic Keratosis Basal Cell Carcinoma and other Malignant Lesions",
+    2: "Atopic Dermatitis Photos",
+    3: "Cellulitis Impetigo and other Bacterial Infections",
+    4: "Eczema Photos",
+    5: "Exanthems and Drug Eruptions",
+    6: "Herpes HPV and other STDs Photos",
+    7: "Light Diseases and Disorders of Pigmentation",
+    8: "Lupus and other Connective Tissue diseases",
+    9: "Melanoma Skin Cancer Nevi and Moles",
+    10: "Poison Ivy Photos and other Contact Dermatitis",
+    11: "Psoriasis pictures Lichen Planus and related diseases",
+    12: "Seborrheic Keratoses and other Benign Tumors",
+    13: "Systemic Disease",
+    14: "Tinea Ringworm Candidiasis and other Fungal Infections",
+    15: "Urticaria Hives",
+    16: "Vascular Tumors",
+    17: "Vasculitis Photos",
+    18: "Warts Molluscum and other Viral Infections",
+}
+
+def load_ai_model(model_path):
+    return load_model(model_path)
+
+def preprocess_image(image_path):
+    image = Image.open(image_path)
+    image = image.resize((192, 192))
+    image = image.convert("RGB")
+    return np.expand_dims(np.array(image), axis=0)
+
+def predict_disease(model, image_array):
+    predictions = model.predict(image_array)[0]
+    max_index = np.argmax(predictions)
+    return CLASS_LABELS[max_index]
 
 def base64_to_image(base64_string):
     image_data = base64.b64decode(base64_string.split(',')[1])
-    image = Image.open(BytesIO(image_data))
-    return image
+    return Image.open(BytesIO(image_data))
 
-conn = sqlite3.connect("C:/Users/Osman/Desktop/DOCUMENTS/teknofest/Skin-Diseases-Diagnosis-Application/backend/api/images.db")
-cur = conn.cursor()
-cur.execute("SELECT img FROM images where imgId = 30")
-veri = cur.fetchone() 
+def check_new_data(cursor):
+    cursor.execute("SELECT img FROM images ORDER BY imgId DESC LIMIT 1")
+    return cursor.fetchone()
 
-if veri:  
-    base64_image = veri[0]  
-    image = base64_to_image(base64_image)
-    image.save("resim.png", "png")
-    image.show()
-else:
-    print("Veri bulunamadı.")
+def main():
+    model = load_ai_model(MODEL_PATH)
+    conn = sqlite3.connect("C:/Users/Osman/Desktop/DOCUMENTS/teknofest/Skin-Diseases-Diagnosis-Application/backend/api/images.db")
+    cur = conn.cursor()
+    last_data = None
 
-conn.close()
+    while True:
+        new_data = check_new_data(cur)
+        if new_data and new_data != last_data:
+            last_data = new_data
+            base64_image = new_data[0]
+            image = base64_to_image(base64_image)
+            image.save(IMAGE_PATH, "png")
+            image_array = preprocess_image(IMAGE_PATH)
+            disease = predict_disease(model, image_array)
+            print("Predicted Disease:", disease)
+        elif not new_data:
+            print("No new data found.")
+        time.sleep(5)
+
+    conn.close()
+
+if __name__ == "__main__":
+    main()
