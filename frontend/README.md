@@ -1,4 +1,4 @@
-# Zature Hastalığı Teşhisi Uygulaması
+# Cilt Hastalığı Teşhisi Uygulaması
 
 Zature hastalığının teşhisi için kullanılan bir React.js uygulamasıdır. Bu uygulama, kullanıcının bir fotoğraf yüklemesine izin verir ve ardından bu fotoğraf üzerinde teşhis sonuçlarını gösterir.
 
