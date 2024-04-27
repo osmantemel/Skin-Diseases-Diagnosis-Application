@@ -3796,11 +3796,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\api\\api.csproj",
+      "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\api\\api.csproj",
       "packagesPath": "C:\\Users\\Osman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\api\\obj\\",
+      "outputPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Osman\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3815,11 +3815,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\Entity.csproj"
+            "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\Entity.csproj"
             },
-            "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Repository\\Repository.csproj"
+            "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Repository\\Repository.csproj"
             }
           }
         }

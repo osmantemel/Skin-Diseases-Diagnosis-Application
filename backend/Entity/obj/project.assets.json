@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\Entity.csproj",
+      "projectUniqueName": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\Entity.csproj",
       "projectName": "Entity",
-      "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\Entity.csproj",
+      "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\Entity.csproj",
       "packagesPath": "C:\\Users\\Osman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\obj\\",
+      "outputPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Osman\\AppData\\Roaming\\NuGet\\NuGet.Config"

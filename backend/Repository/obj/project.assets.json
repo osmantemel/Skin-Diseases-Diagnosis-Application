@@ -4312,11 +4312,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Repository\\Repository.csproj",
+      "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\Osman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Repository\\obj\\",
+      "outputPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Osman\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4331,8 +4331,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\Entity\\Entity.csproj"
+            "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\Entity\\Entity.csproj"
             }
           }
         }

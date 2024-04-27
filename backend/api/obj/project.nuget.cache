@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VbpdOEURKSsD3mfns5IeO/tAyA52Klz7Nx9/kirm86ScbO357HtxnloYelyIXOaKrlSUqthEm6RUJ9G49gyUYQ==",
+  "dgSpecHash": "UI7t99DbkaMrQGOHBeV3g8iULeHeagIMyBFFlZfxcwM7ii7VxA58cYUWmEc00pS99DNnR5geWp9h4UY2HvDtnw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\web-app\\backend\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\Osman\\Desktop\\DOCUMENTS\\teknofest\\Skin-Diseases-Diagnosis-Application\\backend\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Osman\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Osman\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
