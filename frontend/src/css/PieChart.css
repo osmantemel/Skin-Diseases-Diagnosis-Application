@@ -1,7 +1,0 @@
-.card:hover {
-    transform: scale(1.05); /* Kartı büyütme */
-    transition: transform 0.3s ease; /* Geçiş efekti ekleme */
-    z-index: 1; /* Diğer kartların üzerine çıkarma */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Yeni gölge efekti ekleme */
-  }
-  
