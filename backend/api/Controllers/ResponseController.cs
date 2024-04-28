@@ -38,5 +38,12 @@ namespace api.Controllers
             }
             return NoContent();
         }
+
+        [HttpGet]
+        public IActionResult GetAllResponse()
+        {
+            List<ResponseImages> responseImages = _responseImagesRepo.GetAllResponses();
+            return Ok(responseImages);
+        }
     }
 }

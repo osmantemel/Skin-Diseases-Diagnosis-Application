@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import '../css/Fotoload.css';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 const FotoLoad = () => {
   const [file, setFile] = useState(null);
   const [dragging, setDragging] = useState(false);
-  const navigate = useNavigate(); // useNavigate hook'u bileşenin içinde kullanıldı
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate(); 
 
   const handleDragEnter = (event) => {
     event.preventDefault();
@@ -32,18 +33,23 @@ const FotoLoad = () => {
   };
 
   const handleSubmit = () => {
+    setLoading(true); // Butona basıldığında loading state'ini true yap
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         const base64Image = reader.result;
-        console.log(base64Image); 
+        console.log(base64Image);
         sendBase64ToApi(base64Image);
-        navigate('/pie-chart'); // Programatik olarak PieChart rotasına gitme
+        setTimeout(() => {
+          navigate('/pie-chart'); // Programatik olarak PieChart rotasına gitme
+          setLoading(false); // Rotaya yönlendirme yapıldığında loading state'ini false yap
+        }, 15000); // 5 saniye bekletme süresi
       };
       reader.readAsDataURL(file);
     }
   };
-  
+
+
   const sendBase64ToApi = async (base64Image) => {
     try {
       const cevap = await fetch('http://localhost:5225/api/images', {
@@ -54,15 +60,14 @@ const FotoLoad = () => {
         body: JSON.stringify({
           imgId: 0,
           img: base64Image,
-          disease:"null",
-          diseaserates:"null",
+          disease: "null",
+          diseaserates: "null",
           description: "null",
         }),
       });
 
       if (cevap.ok) {
         console.log('Resim başarıyla gönderildi!');
-        alert("Resim işleniyor Lütfen Bekleyin ...")
       } else {
         console.error('Resim gönderme işleminde bir hata oluştu.');
       }
@@ -98,9 +103,17 @@ const FotoLoad = () => {
           <p>Yüklenen Dosya: {file.name}</p>
         </div>
       )}
-      <button onClick={handleSubmit} className="upload-button">
-        Gönder
-      </button>
+      {loading ? (
+        <div className="loading-spinner">
+          <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+          </div>
+        </div>
+      ) : (
+        <button onClick={handleSubmit} className="upload-button">
+          Gönder
+        </button>
+      )}
     </div>
   );
 };

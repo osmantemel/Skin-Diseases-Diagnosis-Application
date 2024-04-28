@@ -10,26 +10,27 @@ MODEL_PATH = "C:/Users/Osman/Desktop/DOCUMENTS/teknofest/model/cnn_model.h5"
 IMAGE_PATH = "C:/Users/Osman/Desktop/DOCUMENTS/teknofest/Skin-Diseases-Diagnosis-Application/resim.png"
 
 CLASS_LABELS = {
-    0: "Acne and Rosacea Photos",
-    1: "Actinic Keratosis Basal Cell Carcinoma and other Malignant Lesions",
-    2: "Atopic Dermatitis Photos",
-    3: "Cellulitis Impetigo and other Bacterial Infections",
-    4: "Eczema Photos",
-    5: "Exanthems and Drug Eruptions",
-    6: "Herpes HPV and other STDs Photos",
-    7: "Light Diseases and Disorders of Pigmentation",
-    8: "Lupus and other Connective Tissue diseases",
-    9: "Melanoma Skin Cancer Nevi and Moles",
-    10: "Poison Ivy Photos and other Contact Dermatitis",
-    11: "Psoriasis pictures Lichen Planus and related diseases",
-    12: "Seborrheic Keratoses and other Benign Tumors",
-    13: "Systemic Disease",
-    14: "Tinea Ringworm Candidiasis and other Fungal Infections",
-    15: "Urticaria Hives",
-    16: "Vascular Tumors",
-    17: "Vasculitis Photos",
-    18: "Warts Molluscum and other Viral Infections",
+    0: "Sivilce ve Rozasea",
+    1: "Aktinik Keratoz Bazal Hücreli Kanser ve Diğer Kötü Huylu Lezyonlar",
+    2: "Atopik Dermatit",
+    3: "Selülit, Impetigo ve Diğer Bakteriyel Enfeksiyonlar",
+    4: "Egzama",
+    5: "Exanthems ve İlaç Reaksiyonları",
+    6: "Herpes, HPV ve Diğer Cinsel Yolla Bulaşan Hastalıklar",
+    7: "Işık Hastalıkları ve Pigmentasyon Bozuklukları",
+    8: "Lupus ve Diğer Bağ Doku Hastalıkları",
+    9: "Melanom, Deri Kanseri, Nevi ve Benekler",
+    10: "Zehirli Sarmışağı, Fotoğraflar ve Diğer Temas Dermatitleri",
+    11: "Psoriasis Fotoğrafları, liken Planus ve İlgili Hastalıklar",
+    12: "Seboreik Keratoz ve Diğer İyi Huylu Tümörler",
+    13: "Sistemik Hastalıklar",
+    14: "Tinea, Mantar Enfeksiyonları ve Diğer Fungal Enfeksiyonlar",
+    15: "Ürtiker, Kurdeşen",
+    16: "Vasküler Tümörler",
+    17: "Vaskülit",
+    18: "Siğiller, Molluskum ve Diğer Viral Enfeksiyonlar",
 }
+
 
 def load_ai_model(model_path):
     return load_model(model_path)

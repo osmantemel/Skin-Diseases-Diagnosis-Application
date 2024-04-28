@@ -20,6 +20,14 @@ namespace Repositories.Concrete
             }
         }
 
+        public List<ResponseImages> GetAllResponses()
+        {
+            using (var db = new ImagesContext())
+            {
+                return db.Responses.ToList();
+            }
+        }
+
         public ResponseImages returnResponse(int id)
         {
             using (var context = new ImagesContext())

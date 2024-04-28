@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import '../css/PieChart.css';
+
 const PieChartPage = () => {
+  const [maxIdResponse, setMaxIdResponse] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('http://localhost:5225/api/responseImages');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const responseData = await response.json();
+        const maxIdResponse = responseData.reduce((prev, current) => (prev.id > current.id) ? prev : current, {});
+        setMaxIdResponse(maxIdResponse);
+        console.log("Max ID Response:", maxIdResponse);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   const data1 = [
     { title: 'Accuracy', value: 94, color: '#36A2EB' },
     { title: 'Hata Payı', value: 6, color: '#FF6384' }
   ];
 
-  const data2 = [
-    { title: 'Akne', value: 82, color: '#ff0000' },
-    { title: 'Sorun Yok', value: 18, color: '#008000' }
-  ];
+  const data2 = maxIdResponse ? [
+    { title: maxIdResponse.top_disease, value: 82, color: '#ff0000' },
+    { title: maxIdResponse.second_top_disease, value: 18, color: '#008000' }
+  ] : [];
 
   const data3 = [
     { title: 'Acil Durum', value: 95, color: '#ff0000' },
     { title: 'Not Acil', value: 5, color: '#008000' }
   ];
-
 
   const data4 = [
     { title: 'A', value: 40, color: '#FFCE56' },
@@ -115,7 +135,7 @@ const PieChartPage = () => {
                 />
               </div>
               <p className="card-text">
-               Hastalığın ne kadar etili olduğunu gösteren grafiktir Garfikteki renkli alanlar üzerine gelerek daha detaylı öğrenebilirsiniz
+                Hastalığın ne kadar etili olduğunu gösteren grafiktir Garfikteki renkli alanlar üzerine gelerek daha detaylı öğrenebilirsiniz
               </p>
             </div>
           </div>

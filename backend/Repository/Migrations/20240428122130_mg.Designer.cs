@@ -10,7 +10,7 @@ using Repositories.Concrete;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ImagesContext))]
-    [Migration("20240428100943_mg")]
+    [Migration("20240428122130_mg")]
     partial class mg
     {
         /// <inheritdoc />
@@ -63,6 +63,33 @@ namespace Repository.Migrations
                     b.HasKey("ImgId");
 
                     b.ToTable("Responses");
+                });
+
+            modelBuilder.Entity("Entity.feedback", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("fullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("message")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.ToTable("feedbacks");
                 });
 #pragma warning restore 612, 618
         }

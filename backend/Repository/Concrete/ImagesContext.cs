@@ -7,6 +7,7 @@ namespace Repositories.Concrete
     {
         public DbSet<Images> Images { get; set; }
         public DbSet<ResponseImages> Responses { get; set; }
+        public DbSet<feedback> feedbacks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
