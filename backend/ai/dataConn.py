@@ -46,7 +46,12 @@ def predict_disease(model, image_array):
     max_indices = np.argsort(predictions)[-3:][::-1]  # En büyük üç orana sahip hastalıkların indekslerini al
     top_disease = CLASS_LABELS[max_indices[0]]  # En büyük oranlı hastalık
     second_top_disease = CLASS_LABELS[max_indices[1]]  # İkinci en büyük oranlı hastalık
-    return top_disease, second_top_disease
+    
+    top_disease_rate = predictions[max_indices[0]]
+    second_top_disease_rate = predictions[max_indices[1]]
+    
+    return top_disease, second_top_disease, top_disease_rate, second_top_disease_rate
+
 
 
 # def predict_disease(model, image_array):
@@ -64,11 +69,18 @@ def check_new_data(cursor):
     return cursor.fetchone()
 
 
-def update_database(conn, cursor, disease, base64_image,second_top_disease):
+def update_database(conn, cursor, disease,second_top_disease, top_disease_rate, second_top_disease_rate):
     diseaseRates="osman"
     description ="temel"
-    cursor.execute("INSERT INTO Responses (top_disease,second_top_disease,diseaseRates,description ) VALUES (?, ?, ?, ?)", 
-                   (disease, second_top_disease,diseaseRates,description)
+    # print(disease,second_top_disease, top_disease_rate, second_top_disease_rate)
+    # print(type(top_disease_rate),type(second_top_disease_rate) )
+    top_disease_rate = round(top_disease_rate*100)
+    second_top_disease_rate = round(second_top_disease_rate*100)
+    top_disease_rate=int(top_disease_rate)
+    second_top_disease_rate=int(second_top_disease_rate)
+    print(disease,second_top_disease, top_disease_rate, second_top_disease_rate)
+    cursor.execute("INSERT INTO Responses (top_disease,second_top_disease,top_disease_Rate, second_top_disease_Rate,diseaseRates,description ) VALUES (?, ?, ?, ?, ?, ?)", 
+                   (disease, second_top_disease,top_disease_rate, second_top_disease_rate,diseaseRates,description)
                    )
     conn.commit()
 
@@ -87,9 +99,9 @@ def main():
                 image = base64_to_image(base64_image)
                 image.save(IMAGE_PATH, "png")
                 image_array = preprocess_image(IMAGE_PATH)
-                disease, second_top_disease = predict_disease(model, image_array)
+                disease, second_top_disease , top_disease_rate, second_top_disease_rate= predict_disease(model, image_array)
                 print("Predicted Disease:", disease)
-                update_database(conn, cur, disease, base64_image,second_top_disease)
+                update_database(conn, cur, disease,second_top_disease, top_disease_rate, second_top_disease_rate)
                 print("Database updated with predicted disease.")
             elif not new_data:
                 print("No new data found.")

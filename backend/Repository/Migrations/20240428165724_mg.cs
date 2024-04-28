@@ -48,6 +48,8 @@ namespace Repository.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     top_disease = table.Column<string>(type: "TEXT", nullable: false),
                     second_top_disease = table.Column<string>(type: "TEXT", nullable: false),
+                    top_disease_Rate = table.Column<int>(type: "INTEGER", nullable: false),
+                    second_top_disease_Rate = table.Column<int>(type: "INTEGER", nullable: false),
                     diseaseRates = table.Column<string>(type: "TEXT", nullable: false),
                     description = table.Column<string>(type: "TEXT", nullable: false)
                 },

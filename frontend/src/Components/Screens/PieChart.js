@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
-import '../css/PieChart.css';
+import '../../css/PieChart.css';
 
 const PieChartPage = () => {
   const [maxIdResponse, setMaxIdResponse] = useState(null);
@@ -29,14 +29,19 @@ const PieChartPage = () => {
   ];
 
   const data2 = maxIdResponse ? [
-    { title: maxIdResponse.top_disease, value: 82, color: '#ff0000' },
-    { title: maxIdResponse.second_top_disease, value: 18, color: '#008000' }
+    { title: maxIdResponse.top_disease, value: maxIdResponse.top_disease_Rate, color: '#ff0000' },
+    { title: maxIdResponse.second_top_disease, value: maxIdResponse.second_top_disease_Rate, color: '#008000' }
   ] : [];
 
-  const data3 = [
-    { title: 'Acil Durum', value: 95, color: '#ff0000' },
-    { title: 'Not Acil', value: 5, color: '#008000' }
-  ];
+  const data3 = maxIdResponse ? [
+    { title: 'Acil Durum', value:  maxIdResponse.top_disease_Rate + 5, color: '#ff0000' },
+    { title: 'Not Acil', value: maxIdResponse.second_top_disease_Rate - 5, color: '#008000' }
+  ] : [];
+
+  // const data3 = [
+  //   { title: 'Acil Durum', value: 95, color: '#ff0000' },
+  //   { title: 'Not Acil', value: 5, color: '#008000' }
+  // ];
 
   const data4 = [
     { title: 'A', value: 40, color: '#FFCE56' },

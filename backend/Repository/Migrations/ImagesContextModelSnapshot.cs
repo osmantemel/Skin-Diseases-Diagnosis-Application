@@ -53,9 +53,15 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("second_top_disease_Rate")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("top_disease")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("top_disease_Rate")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ImgId");
 

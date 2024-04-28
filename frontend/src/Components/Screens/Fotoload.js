@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/Fotoload.css';
+import '../../css/Fotoload.css';
 import { useNavigate } from 'react-router-dom';
 
 const FotoLoad = () => {
