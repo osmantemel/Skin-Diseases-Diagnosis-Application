@@ -54,7 +54,9 @@ const FotoLoad = () => {
         body: JSON.stringify({
           imgId: 0,
           img: base64Image,
-          description: "osman temel",
+          disease:"null",
+          diseaserates:"null",
+          description: "null",
         }),
       });
 

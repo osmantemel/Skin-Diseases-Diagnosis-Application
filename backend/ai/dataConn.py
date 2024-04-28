@@ -42,8 +42,17 @@ def preprocess_image(image_path):
 
 def predict_disease(model, image_array):
     predictions = model.predict(image_array)[0]
-    max_index = np.argmax(predictions)
-    return CLASS_LABELS[max_index]
+    max_indices = np.argsort(predictions)[-3:][::-1]  # En büyük üç orana sahip hastalıkların indekslerini al
+    top_disease = CLASS_LABELS[max_indices[0]]  # En büyük oranlı hastalık
+    second_top_disease = CLASS_LABELS[max_indices[1]]  # İkinci en büyük oranlı hastalık
+    return top_disease, second_top_disease
+
+
+# def predict_disease(model, image_array):
+#     predictions = model.predict(image_array)[0]
+#     max_index = np.argmax(predictions)
+#     print(predictions)
+#     return CLASS_LABELS[max_index]
 
 def base64_to_image(base64_string):
     image_data = base64.b64decode(base64_string.split(',')[1])
@@ -53,27 +62,41 @@ def check_new_data(cursor):
     cursor.execute("SELECT img FROM images ORDER BY imgId DESC LIMIT 1")
     return cursor.fetchone()
 
+
+def update_database(conn, cursor, disease, base64_image,second_top_disease):
+    diseaseRates="osman"
+    description ="temel"
+    cursor.execute("INSERT INTO Responses (top_disease,second_top_disease,diseaseRates,description ) VALUES (?, ?, ?, ?)", 
+                   (disease, second_top_disease,diseaseRates,description)
+                   )
+    conn.commit()
+
 def main():
     model = load_ai_model(MODEL_PATH)
     conn = sqlite3.connect("C:/Users/Osman/Desktop/DOCUMENTS/teknofest/Skin-Diseases-Diagnosis-Application/backend/api/images.db")
     cur = conn.cursor()
     last_data = None
 
-    while True:
-        new_data = check_new_data(cur)
-        if new_data and new_data != last_data:
-            last_data = new_data
-            base64_image = new_data[0]
-            image = base64_to_image(base64_image)
-            image.save(IMAGE_PATH, "png")
-            image_array = preprocess_image(IMAGE_PATH)
-            disease = predict_disease(model, image_array)
-            print("Predicted Disease:", disease)
-        elif not new_data:
-            print("No new data found.")
-        time.sleep(5)
-
-    conn.close()
+    try:
+        while True:
+            new_data = check_new_data(cur)
+            if new_data and new_data != last_data:
+                last_data = new_data
+                base64_image = new_data[0]
+                image = base64_to_image(base64_image)
+                image.save(IMAGE_PATH, "png")
+                image_array = preprocess_image(IMAGE_PATH)
+                disease, second_top_disease = predict_disease(model, image_array)
+                print("Predicted Disease:", disease)
+                update_database(conn, cur, disease, base64_image,second_top_disease)
+                print("Database updated with predicted disease.")
+            elif not new_data:
+                print("No new data found.")
+            time.sleep(5)
+    except KeyboardInterrupt:
+        print("Process interrupted by user.")
+    finally:
+        conn.close()
 
 if __name__ == "__main__":
     main()

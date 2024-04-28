@@ -10,8 +10,8 @@ using Repositories.Concrete;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ImagesContext))]
-    [Migration("20240422113836_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240428100943_mg")]
+    partial class mg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,33 @@ namespace Repository.Migrations
                     b.HasKey("ImgId");
 
                     b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Entity.ResponseImages", b =>
+                {
+                    b.Property<int>("ImgId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("diseaseRates")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("second_top_disease")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("top_disease")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ImgId");
+
+                    b.ToTable("Responses");
                 });
 #pragma warning restore 612, 618
         }
